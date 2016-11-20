@@ -1,7 +1,7 @@
 #Goal
 Our goal was to illustrate some tools usage to determine test settings
-* [Maven profile properties]()
-* [Maven surefire plugin to set system properties according to profile properties]()
+* [Maven profile properties](https://github.com/automician/snippets/blob/master/java/properties/profilepropertiesdemo/pom.xml)
+* [Maven surefire plugin to set system properties according to profile properties](https://github.com/automician/snippets/blob/master/java/properties/profilepropertiesdemo/pom.xml)
  
  
 
