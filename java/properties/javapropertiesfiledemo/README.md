@@ -7,7 +7,8 @@ Our goal was to illustrate some tools usage to determine test settings
  
 
 #Examples
-* Run in command line `mvn clean test -P prod`
+* Run in command line ```mvn clean test -P prod```
+    
     information about properties in console 
     ```
     [Properties reading] ---------------------------------------------------------
@@ -22,7 +23,8 @@ Our goal was to illustrate some tools usage to determine test settings
     browser=firefox
     ```
 
-* Run in command line `mvn clean test -P prod -D browser=chrome -D app.url=https://todomvc4tasj.herokuapp.com/`
+* Run in command line ```mvn clean test -P prod -D browser=chrome -D app.url=https://todomvc4tasj.herokuapp.com/```
+
     information about used properties in console 
     ```
     [Properties reading] ---------------------------------------------------------
@@ -33,7 +35,7 @@ Our goal was to illustrate some tools usage to determine test settings
     [Properties reading] ---------------------------------------------------------
     ```
   
-    properties were corrected according to the system properties sent in command line
+    properties were corrected according to the system properties filled through the command line
    
 
     
