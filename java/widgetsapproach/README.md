@@ -44,6 +44,7 @@ To fix some approaches in widget usage
     * so each widget call begins from call one of these methods
     * thus, this approach can provide more readable code in BDD style:
       [reported correspondingly](https://drive.google.com/file/d/0B2UFaKOpHq_MNEM4Y3NTRTAzdlU/view?usp=sharing)
+      
 #Profiles
 * `dev` (by default)
 * `test`
