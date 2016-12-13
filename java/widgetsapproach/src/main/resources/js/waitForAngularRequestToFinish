@@ -1,0 +1,23 @@
+
+var el = document.querySelector(rootSelector);
+try {
+    if (window.getAngularTestability) {
+        window.getAngularTestability(el).whenStable(callback);
+        return;
+    }
+    if (!window.angular) {
+        throw new Error('window.angular is undefined.');
+    }
+    if (angular.getTestability) {
+        angular.getTestability(el).whenStable(callback);
+    } else {
+        if (!angular.element(el).injector()) {
+            throw new Error('root element (' + rootSelector + ') has no injector.');
+        }
+        angular.element(el).injector().get('$browser').
+        notifyWhenNoOutstandingRequests(callback);
+    }
+} catch (err) {
+    callback(err.message);
+}
+
