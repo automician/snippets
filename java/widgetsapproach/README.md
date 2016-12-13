@@ -20,7 +20,7 @@ To fix some approaches in widget usage
     * for firefox the "older" firefox driver is used (for possible versions of the browser <=47.0.1) to avoid [some problems in geckodriver](https://github.com/mozilla/geckodriver/issues/233)
   * included: wait for Angular 
     * to finish async "loading" activity in case UI is not ready for corresponding actions and there is no other way to wait (e.g. via Selenide)
-    * based on opensource [ngWebDriver's](https://github.com/paul-hammant/ngWebDriver) implemenation
+    * based on open source [ngWebDriver's](https://github.com/paul-hammant/ngWebDriver) implementation
   * Methods to access to elements with 'data-test' attribute
   * Unique data generator 
     * each generated value has a name
@@ -30,7 +30,7 @@ To fix some approaches in widget usage
     * so everything just works
   * One entry point to access core features
 ## The Test Model part
-  * based on Widgets pattern (aka [PageObjects by Martin Fowler](martinfowler.com/bliki/PageObject.html))
+  * based on Widgets pattern (aka [PageObjects by Martin Fowler](http://martinfowler.com/bliki/PageObject.html))
   * implemented in object-oriented style for convenient handy usage in tests
   * widget describes some complex element, usually containing a group of other nested elements
   * widget can reflect the part of a page or a whole page
