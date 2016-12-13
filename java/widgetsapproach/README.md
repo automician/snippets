@@ -1,55 +1,62 @@
 #Goal
 To fix some approaches in widget usage
-   
+
 #"Done" list   
-## core
-  * profiles and properties - ensure running test using different environment properties linked with profiles
-    * profile determines property file
-    * one profile is default (if profile is not specified by user, default profile will be used) 
-    * in project it can be possible to include several property files
-    * each property file describes their own set of property values
-    * property values can be clarified using system property with the same name 
-    * it is convenient and flexible way to applying test settings
+## the "core" part of test framework
+  * profiles and properties 
+    * ensure running tests using different environment 
+    * java properties files are linked to profiles in pom.xml
+    * one profile is default: profiles.dev
+      * if profile is not specified by user, default profile will be used
+    * there can be as many java properties files as needed
+    * each property file describes their own set of values for the same list of properties
+    * property values can be overriden using system property with the same name 
+    * so tests can be configured by
         * changing property file
         * using different profiles
         * using default profile
         * specifying some properties through system properties 
   * tests can be run in chrome and firefox
-    * firefox with firefox driver usage (possible for v<=47.0.1) to avoid [some problems in geckodriver](https://github.com/mozilla/geckodriver/issues/233)
-  * wait for Angular to finish async activity 
-    * [ngWebDriver's](https://github.com/paul-hammant/ngWebDriver) realisation of that waiting was taken as an example
-    * because of unstable results appeared in some cases without this waiting
+    * for firefox the "older" firefox driver is used (for possible versions of the browser <=47.0.1) to avoid [some problems in geckodriver](https://github.com/mozilla/geckodriver/issues/233)
+  * included: wait for Angular 
+    * to finish async "loading" activity in case UI is not ready for corresponding actions and there is no other way to wait (e.g. via Selenide)
+    * based on opensource [ngWebDriver's](https://github.com/paul-hammant/ngWebDriver) implemenation
   * Methods to access to elements with 'data-test' attribute
   * Unique data generator 
     * each generated value has a name
     * each value can be get by its name
+    * only the "name" is used in tests, without directly specifying the "unique" prefix of postfix of data
+    * and the "unique" part is hidden under the hood... 
+    * so everything just works
   * One entry point to access core features
-## widgets
-  * object-oriented approach of tools realisation
-  * widget describes some element (or group of linked elements)
-  * widget provides methods
-    * realizing all needed functions of that widget
+## The Test Model part
+  * based on Widgets pattern (aka [PageObjects by Martin Fowler](martinfowler.com/bliki/PageObject.html))
+  * implemented in object-oriented style for convenient handy usage in tests
+  * widget describes some complex element, usually containing a group of other nested elements
+  * widget can reflect the part of a page or a whole page
+  * widget represents a behavior of the user on the "UI Part" that it represents
+    * implemented in widget methods
     * returning widget(the same or new one - it depends on application logic)
-  * widgets have one entry point
-    * entry point is realised as a GIVEN(), WHEN(), THEN() methods
-    * each call of widgets should begin from call one of these methods
-    * thus, this approach can provide more readable code
-
+      * so it can be conveniently used without much knowledge of its internal structure:
+        `WHEN().topBar().startLogin().startSubscribe();`
+  * in tests widgets have one entry point
+    * entry point is implemented in GIVEN(), WHEN(), THEN() methods of BaseTest
+    * so each widget call begins from call one of these methods
+    * thus, this approach can provide more readable code in BDD style:
+      [reported correspondingly](https://drive.google.com/file/d/0B2UFaKOpHq_MNEM4Y3NTRTAzdlU/view?usp=sharing)
 #Profiles
 * `dev` (by default)
 * `test`
-
 #Settings
-* `app.url`
-  * base url of tested application
 * `data.user.email` and `data.user.password`
-  * credentials of user - can be used in tests
+  * credentials of user - to be used in tests
 * `test.timeout`
-  * timeout in milliseconds for smart waits in situations
-    * checks
-    * access to elements 
-    * that action run periodically during timeout until check is passed
-    * this is native behaviour of Selenide allowing to test applications with dynamic load
+  * timeout in milliseconds 
+    * for smart waits 
+      * "smart" means - the "wait implementation" will wait only the minimum needed amount of time, not greater than specified timeout
+    * during
+      * asserts / checking test steps results
+      * access to elements 
 * `test.browser`
   * firefox
   * chrome
@@ -59,21 +66,15 @@ To fix some approaches in widget usage
   * `mvn clean test`
     * tests with default profile will be run
 * using profile
-  * `mvn clean test -P test`
+  * `mvn clean test -Ptest`
     * tests with specified profile will be run
 * using profile & system properties
-  * `mvn clean test -P test -D test.browser=chrome`
-    * tests with profile properties corrected by system properties will be run 
+  * `mvn clean test -Ptest -Dtest.browser=chrome`
+    * tests with profile properties overridden by system properties will be executed
     * [example](https://drive.google.com/file/d/0B2UFaKOpHq_Mc1d1VVhDTmVQQzA/view?usp=sharing) 
-
 #How to get Allure report
-* command line to form report
-  * `mvn clean test`
-* opening
+* command line command to generate a report (based on test results of previously executed `mvn clean test`)
+  * `mvn site`
+* to open
   * open in firefox - project\target\site\allure-maven-plugin.html
-    * The report can be opened in more detail - down to the method steps (follow the arrows)
-    * Each new sentence - starts with GIVEN / WHEN / THEN
-    * The continuation of this sentence (methods of widgets) come after GIVEN / WHEN / THEN
   
-       
-    
