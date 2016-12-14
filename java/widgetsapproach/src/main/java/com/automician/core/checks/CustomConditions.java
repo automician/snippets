@@ -29,43 +29,4 @@ public class CustomConditions {
         };
     }
 
-    public static Condition hoverAndOpenMenu(final ElementsCollection menuItems) {
-        return new Condition("hoverAndOpenMenu") {
-            @Override
-            public boolean apply(WebElement element) {
-                actions().moveToElement(element).perform();
-                return menuItems.get(0).isDisplayed();
-            }
-
-            @Override
-            public String toString() {
-                return name + " '" + menuItems + '\'';
-            }
-        };
-    }
-
-    public static Condition hoverAndOpenMenuAndSelectItem(final ElementsCollection menuItems, final Condition conditionToSelectMenuItem) {
-        return new Condition("hoverAndOpenMenu") {
-            @Override
-            public boolean apply(WebElement element) {
-                actions().moveToElement(element).perform();
-                WebElement menuItem = menuItems.find(conditionToSelectMenuItem).toWebElement();
-                if (menuItem == null) {
-                    return false;
-                }
-                try {
-                    menuItem.click();
-                    return true;
-                } catch (WebDriverException e) {
-                    return false;
-                }
-            }
-
-            @Override
-            public String toString() {
-                return name + " '" + menuItems + '\'' + " \ncondition to select menu item " + conditionToSelectMenuItem;
-            }
-        };
-    }
-
 }

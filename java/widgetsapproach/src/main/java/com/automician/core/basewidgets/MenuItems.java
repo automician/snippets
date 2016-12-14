@@ -5,10 +5,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.automician.core.checks.CustomConditions.hoverAndOpenMenu;
-import static com.automician.core.checks.CustomConditions.hoverAndOpenMenuAndSelectItem;
-
-
 public class MenuItems {
 
     public final ElementsCollection self;
@@ -21,7 +17,7 @@ public class MenuItems {
 
     public MenuItems open() {
         AngularHelpers.waitForRequestsToFinish();
-        parent.should(hoverAndOpenMenu(self));
+        parent.hover();
         return this;
     }
 
@@ -30,7 +26,7 @@ public class MenuItems {
     }
 
     public void openAndSelect(Condition conditionToSelectItem) {
-        AngularHelpers.waitForRequestsToFinish();
-        parent.should(hoverAndOpenMenuAndSelectItem(self, conditionToSelectItem));
+        open();
+        select(conditionToSelectItem);
     }
 }

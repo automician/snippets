@@ -10,7 +10,7 @@ To fix some approaches in widget usage
       * if profile is not specified by user, default profile will be used
     * there can be as many java properties files as needed
     * each property file describes their own set of values for the same list of properties
-    * property values can be overriden using system property with the same name 
+    * property values can be overridden using system property with the same name 
     * so tests can be configured by
         * changing property file
         * using different profiles
