@@ -1,4 +1,4 @@
-package com.automician.core.exceptions;
+package com.automician.core.angular.wait.exceptions;
 
 import org.openqa.selenium.WebDriverException;
 

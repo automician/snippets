@@ -1,22 +1,21 @@
 package com.automician.core.basewidgets;
 
-import com.automician.core.angular.AngularHelpers;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
+import com.automician.core.angular.entities.AngularCollection;
+import com.automician.core.angular.entities.AngularElement;
+import com.automician.core.angular.wait.AngularWait;
+import com.codeborne.selenide.*;
 
 public class MenuItems {
 
-    public final ElementsCollection self;
-    public final SelenideElement parent;
+    public final AngularCollection self;
+    public final AngularElement parent;
 
-    public MenuItems(SelenideElement parent, ElementsCollection menuItems) {
+    public MenuItems(AngularElement parent, AngularCollection menuItems) {
         this.parent = parent;
         this.self = menuItems;
     }
 
     public MenuItems open() {
-        AngularHelpers.waitForRequestsToFinish();
         parent.hover();
         return this;
     }

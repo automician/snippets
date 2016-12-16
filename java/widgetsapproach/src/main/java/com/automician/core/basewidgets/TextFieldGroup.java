@@ -1,5 +1,8 @@
 package com.automician.core.basewidgets;
 
+import com.automician.core.angular.entities.AngularCollection;
+import com.automician.core.angular.entities.AngularElement;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -11,26 +14,26 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
 public class TextFieldGroup {
 
-    private SelenideElement self;
+    private AngularElement self;
     private String[] attrDataTestValues;
 
     private List<SelenideElement> elements;
 
-    public TextFieldGroup(SelenideElement container) {
+    public TextFieldGroup(AngularElement container) {
         this.self = container;
     }
 
-    public TextFieldGroup(SelenideElement container, String... attrDataTestValues) {
+    public TextFieldGroup(AngularElement container, String... attrDataTestValues) {
         this.self = container;
         this.attrDataTestValues = attrDataTestValues;
     }
 
-    private List<SelenideElement> getElements(int minimumOfCount) {
-        List<SelenideElement> elements = new ArrayList<>();
+    private List<AngularElement> getElements(int minimumOfCount) {
+        List<AngularElement> elements = new ArrayList<AngularElement>();
 
         if (attrDataTestValues == null) {
-            ElementsCollection collection = self.findAll("input").shouldHave(sizeGreaterThanOrEqual(minimumOfCount));
-            for (SelenideElement element : collection) {
+            AngularCollection collection = self.findAll("input").shouldHave(sizeGreaterThanOrEqual(minimumOfCount));
+            for (AngularElement element : collection) {
                 elements.add(element);
             }
         } else {
@@ -42,7 +45,7 @@ public class TextFieldGroup {
     }
 
     public void fill(String... texts) {
-        List<SelenideElement> elements = getElements(texts.length);
+        List<AngularElement> elements = getElements(texts.length);
 
         for (int i = 0; i < Math.min(texts.length, elements.size()); i++) {
             elements.get(i).setValue(texts[i]);

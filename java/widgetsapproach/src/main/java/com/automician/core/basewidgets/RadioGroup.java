@@ -1,14 +1,15 @@
 package com.automician.core.basewidgets;
 
+import com.automician.core.angular.entities.AngularElement;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.automician.core.locators.Locators.dt;
 
 public class RadioGroup {
 
-    private SelenideElement self;
+    private AngularElement self;
 
-    public RadioGroup(SelenideElement container) {
+    public RadioGroup(AngularElement container) {
         this.self = container;
     }
 

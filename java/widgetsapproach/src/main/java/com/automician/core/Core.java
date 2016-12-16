@@ -1,14 +1,13 @@
 package com.automician.core;
 
-import com.automician.core.angular.AngularHelpers;
+import com.automician.core.angular.entities.AngularElement;
+import com.automician.core.angular.wait.AngularWait;
 import com.automician.core.checks.Assertions;
 import com.automician.core.checks.CustomConditions;
 import com.automician.core.helpers.UniqueData;
 import com.automician.core.locators.Locators;
 import com.automician.core.properties.PropertiesReader;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import com.codeborne.selenide.ex.UIAssertionError;
 
 public class Core {
@@ -16,7 +15,7 @@ public class Core {
     private static Core core = new Core();
 
     private UniqueData uniqueData = new UniqueData();
-    private AngularHelpers angular = new AngularHelpers();
+    private AngularWait angular = new AngularWait();
 
     public static Core core() {
         return core;
@@ -30,8 +29,7 @@ public class Core {
         return new Assertions();
     }
 
-    public boolean waitingIs(SelenideElement element, Condition condition) {
-        angular().waitForRequestsToFinish();
+    public boolean waitingIs(AngularElement element, Condition condition) {
         try {
             element.should(condition);
             return true;
@@ -40,7 +38,7 @@ public class Core {
         }
     }
 
-    public AngularHelpers angular() {
+    public AngularWait angular() {
         return angular;
     }
 
@@ -60,11 +58,11 @@ public class Core {
         return new CustomConditions();
     }
 
-    public String the(String name) {
+    public String unique(String name) {
         return uniqueData().the(name);
     }
 
-    public String the(String name, String suffix) {
+    public String unique(String name, String suffix) {
         return uniqueData().the(name, suffix);
     }
 
