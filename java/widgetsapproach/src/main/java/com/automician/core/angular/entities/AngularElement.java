@@ -1,8 +1,7 @@
 package com.automician.core.angular.entities;
 
-import com.automician.core.angular.commands.ElementCommand;
+import com.automician.core.angular.wait.AngularWait;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.internal.Coordinates;
@@ -12,9 +11,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static com.automician.core.angular.commands.WithWaitFor.withWaitForElement;
 
 public class AngularElement {
+
     SelenideElement self;
 
     public AngularElement(SelenideElement element) {
@@ -23,22 +22,13 @@ public class AngularElement {
 
 
     public void followLink() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.followLink();
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.followLink();
     }
 
     public AngularElement setValue(final String text) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.setValue(text);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.setValue(text);
         return this;
     }
 
@@ -48,12 +38,8 @@ public class AngularElement {
 
 
     public AngularElement append(final String text) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.append(text);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.append(text);
         return this;
     }
 
@@ -77,92 +63,56 @@ public class AngularElement {
 
 
     public String getText() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.getText();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getText();
     }
 
 
     public List<WebElement> findElements(final By by) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElements(by);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElements(by);
     }
 
 
     public WebElement findElement(final By by) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElement(by);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElement(by);
     }
 
 
     public String text() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.text();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.text();
     }
 
 
     public String innerText() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.innerText();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.innerText();
     }
 
 
     public String innerHtml() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.innerHtml();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.innerHtml();
     }
 
 
     public String attr(final String attributeName) {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.attr(attributeName);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.attr(attributeName);
     }
 
 
     public String name() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.name();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.name();
     }
 
 
     public String val() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.val();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.val();
     }
 
 
@@ -172,93 +122,57 @@ public class AngularElement {
 
 
     public AngularElement selectRadio(final String value) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.selectRadio(value);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.selectRadio(value);
         return this;
     }
 
 
     public String data(final String dataAttributeName) {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.data(dataAttributeName);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.data(dataAttributeName);
     }
 
 
     public boolean exists() {
-        return withWaitForElement(self).run(new ElementCommand<Boolean>() {
-
-            public Boolean run(SelenideElement element) {
-                return element.exists();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.exists();
     }
 
 
     public boolean isDisplayed() {
-        return withWaitForElement(self).run(new ElementCommand<Boolean>() {
-
-            public Boolean run(SelenideElement element) {
-                return element.isDisplayed();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.isDisplayed();
     }
 
 
     public Point getLocation() {
-        return withWaitForElement(self).run(new ElementCommand<Point>() {
-
-            public Point run(SelenideElement element) {
-                return element.getLocation();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getLocation();
     }
 
 
     public Dimension getSize() {
-        return withWaitForElement(self).run(new ElementCommand<Dimension>() {
-
-            public Dimension run(SelenideElement element) {
-                return element.getSize();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getSize();
     }
 
 
     public Rectangle getRect() {
-        return withWaitForElement(self).run(new ElementCommand<Rectangle>() {
-
-            public Rectangle run(SelenideElement element) {
-                return element.getRect();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getRect();
     }
 
 
     public String getCssValue(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.getCssValue(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getCssValue(s);
     }
 
 
     public boolean is(final Condition condition) {
-        return withWaitForElement(self).run(new ElementCommand<Boolean>() {
-
-            public Boolean run(SelenideElement element) {
-                return element.is(condition);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.is(condition);
     }
 
 
@@ -268,23 +182,15 @@ public class AngularElement {
 
 
     public AngularElement setSelected(final boolean selected) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.setSelected(selected);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.setSelected(selected);
         return this;
     }
 
 
     public AngularElement should(final Condition... condition) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.should(condition);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.should(condition);
         return this;
     }
 
@@ -300,12 +206,8 @@ public class AngularElement {
 
 
     public AngularElement shouldNot(final Condition... condition) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.shouldNot(condition);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.shouldNot(condition);
         return this;
     }
 
@@ -321,704 +223,397 @@ public class AngularElement {
 
 
     public AngularElement waitUntil(final Condition condition, final long timeoutMilliseconds) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.waitUntil(condition, timeoutMilliseconds);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.waitUntil(condition, timeoutMilliseconds);
         return this;
     }
 
 
     public AngularElement waitUntil(final Condition condition, final long timeoutMilliseconds, final long pollingIntervalMilliseconds) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.waitUntil(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.waitUntil(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
         return this;
     }
 
 
     public AngularElement waitWhile(final Condition condition, final long timeoutMilliseconds) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.waitWhile(condition, timeoutMilliseconds);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.waitWhile(condition, timeoutMilliseconds);
         return this;
     }
 
 
     public AngularElement waitWhile(final Condition condition, final long timeoutMilliseconds, final long pollingIntervalMilliseconds) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.waitWhile(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.waitWhile(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
         return this;
     }
 
 
     public AngularElement parent() {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.parent();
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.parent());
     }
 
 
     public AngularElement closest(final String tagOrClass) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.closest(tagOrClass);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.closest(tagOrClass));
     }
 
 
     public AngularElement find(final String cssSelector) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.find(cssSelector);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.find(cssSelector));
     }
 
 
     public AngularElement find(final String cssSelector, final int index) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.find(cssSelector, index);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.find(cssSelector, index));
     }
 
 
     public AngularElement find(final By selector) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.find(selector);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.find(selector));
     }
 
 
     public AngularElement find(final By selector, final int index) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.find(selector, index);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.find(selector, index));
     }
 
 
     public AngularElement $(final String cssSelector) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.$(cssSelector);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.$(cssSelector));
     }
 
 
     public AngularElement $(final String cssSelector, final int index) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.$(cssSelector, index);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.$(cssSelector, index));
     }
 
 
     public AngularElement $(final By selector) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.$(selector);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.$(selector));
     }
 
 
     public AngularElement $(final By selector, final int index) {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.$(selector, index);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.$(selector, index));
     }
 
 
     public AngularCollection findAll(final String cssSelector) {
-        ElementsCollection collection = withWaitForElement(self).run(new ElementCommand<ElementsCollection>() {
-
-            public ElementsCollection run(SelenideElement element) {
-                return element.findAll(cssSelector);
-            }
-        });
-        return new AngularCollection(collection);
+        AngularWait.forRequestsToFinish();
+        return new AngularCollection(self.findAll(cssSelector));
     }
 
 
     public AngularCollection findAll(final By selector) {
-        ElementsCollection collection = withWaitForElement(self).run(new ElementCommand<ElementsCollection>() {
-
-            public ElementsCollection run(SelenideElement element) {
-                return element.findAll(selector);
-            }
-        });
-        return new AngularCollection(collection);
+        AngularWait.forRequestsToFinish();
+        return new AngularCollection(self.findAll(selector));
     }
 
 
     public AngularCollection $$(final String cssSelector) {
-        ElementsCollection collection = withWaitForElement(self).run(new ElementCommand<ElementsCollection>() {
-
-            public ElementsCollection run(SelenideElement element) {
-                return element.$$(cssSelector);
-            }
-        });
-        return new AngularCollection(collection);
+        AngularWait.forRequestsToFinish();
+        return new AngularCollection(self.$$(cssSelector));
     }
 
 
     public AngularCollection $$(final By selector) {
-        ElementsCollection collection = withWaitForElement(self).run(new ElementCommand<ElementsCollection>() {
-
-            public ElementsCollection run(SelenideElement element) {
-                return element.$$(selector);
-            }
-        });
-        return new AngularCollection(collection);
+        AngularWait.forRequestsToFinish();
+        return new AngularCollection(self.$$(selector));
     }
 
 
     public File uploadFromClasspath(final String... fileName) {
-        return withWaitForElement(self).run(new ElementCommand<File>() {
-
-            public File run(SelenideElement element) {
-                return element.uploadFromClasspath(fileName);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.uploadFromClasspath(fileName);
     }
 
 
     public File uploadFile(final File... file) {
-        return withWaitForElement(self).run(new ElementCommand<File>() {
-
-            public File run(SelenideElement element) {
-                return element.uploadFile(file);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.uploadFile(file);
     }
 
 
     public void selectOption(final int... index) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.selectOption(index);
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.selectOption(index);
     }
 
 
     public void selectOption(final String... text) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.selectOption(text);
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.selectOption(text);
     }
 
 
     public void selectOptionByValue(final String... value) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.selectOption(value);
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.selectOption(value);
     }
 
 
     public AngularElement getSelectedOption() throws NoSuchElementException {
-        SelenideElement element = withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.getSelectedOption();
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.getSelectedOption());
     }
 
 
     public AngularCollection getSelectedOptions() {
-        ElementsCollection collection = withWaitForElement(self).run(new ElementCommand<ElementsCollection>() {
-
-            public ElementsCollection run(SelenideElement element) {
-                return element.getSelectedOptions();
-            }
-        });
-        return new AngularCollection(collection);
+        AngularWait.forRequestsToFinish();
+        return new AngularCollection(self.getSelectedOptions());
     }
 
 
     public String getSelectedValue() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.getSelectedValue();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getSelectedValue();
     }
 
 
     public String getSelectedText() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.getSelectedText();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getSelectedText();
     }
 
 
     public AngularElement scrollTo() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.scrollTo();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.scrollTo();
         return this;
     }
 
 
     public File download() throws FileNotFoundException {
-        final FileNotFoundException[] lastError = new FileNotFoundException[1];
-        File file = withWaitForElement(self).run(new ElementCommand<File>() {
-
-            public File run(SelenideElement element) {
-                try {
-                    return element.download();
-                } catch (FileNotFoundException e) {
-                    lastError[0] = e;
-                    return null;
-                }
-            }
-        });
-        if (file == null) {
-            throw new FileNotFoundException(lastError[0].getMessage());
-        }
-        return file;
+        AngularWait.forRequestsToFinish();
+        return self.download();
     }
 
 
     public WebElement toWebElement() {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.toWebElement();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.toWebElement();
     }
 
 
     public WebElement getWrappedElement() {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.getWrappedElement();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getWrappedElement();
     }
 
 
     public void click() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.click();
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.click();
     }
 
 
     public void submit() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.submit();
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.submit();
     }
 
 
     public void sendKeys(final CharSequence... charSequences) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.sendKeys(charSequences);
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.sendKeys(charSequences);
     }
 
 
     public void clear() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                element.clear();
-                return element;
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.clear();
     }
 
 
     public String getTagName() {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.getTagName();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getTagName();
     }
 
 
     public String getAttribute(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<String>() {
-
-            public String run(SelenideElement element) {
-                return element.getAttribute(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getAttribute(s);
     }
 
 
     public boolean isSelected() {
-        return withWaitForElement(self).run(new ElementCommand<Boolean>() {
-
-            public Boolean run(SelenideElement element) {
-                return element.isSelected();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.isSelected();
     }
 
 
     public boolean isEnabled() {
-        return withWaitForElement(self).run(new ElementCommand<Boolean>() {
-
-            public Boolean run(SelenideElement element) {
-                return element.isEnabled();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.isEnabled();
     }
 
 
     public AngularElement contextClick() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.contextClick();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.contextClick();
         return this;
     }
 
 
     public AngularElement doubleClick() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.doubleClick();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.doubleClick();
         return this;
     }
 
 
     public AngularElement hover() {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.hover();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.hover();
         return this;
     }
 
 
     public AngularElement dragAndDropTo(final String targetCssSelector) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.dragAndDropTo(targetCssSelector);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.dragAndDropTo(targetCssSelector);
         return this;
     }
 
 
     public AngularElement dragAndDropTo(final WebElement target) {
-        withWaitForElement(self).run(new ElementCommand<SelenideElement>() {
-
-            public SelenideElement run(SelenideElement element) {
-                return element.dragAndDropTo(target);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.dragAndDropTo(target);
         return this;
     }
 
 
     public boolean isImage() {
-        return withWaitForElement(self).run(new ElementCommand<Boolean>() {
-
-            public Boolean run(SelenideElement element) {
-                return element.isImage();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.isImage();
     }
 
 
     public File screenshot() {
-        return withWaitForElement(self).run(new ElementCommand<File>() {
-
-            public File run(SelenideElement element) {
-                return element.screenshot();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.screenshot();
     }
 
 
     public BufferedImage screenshotAsImage() {
-        return withWaitForElement(self).run(new ElementCommand<BufferedImage>() {
-
-            public BufferedImage run(SelenideElement element) {
-                return element.screenshotAsImage();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.screenshotAsImage();
     }
 
 
     public <X> X getScreenshotAs(final OutputType<X> outputType) throws WebDriverException {
-        return withWaitForElement(self).run(new ElementCommand<X>() {
-
-            public X run(SelenideElement element) {
-                return element.getScreenshotAs(outputType);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getScreenshotAs(outputType);
     }
 
 
     public WebElement findElementByClassName(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementByClassName(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementByClassName(s);
     }
 
 
     public List<WebElement> findElementsByClassName(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsByClassName(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsByClassName(s);
     }
 
 
     public WebElement findElementByCssSelector(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementByCssSelector(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementByCssSelector(s);
     }
 
 
     public List<WebElement> findElementsByCssSelector(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsByCssSelector(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsByCssSelector(s);
     }
 
 
     public WebElement findElementById(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementById(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementById(s);
     }
 
 
     public List<WebElement> findElementsById(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsById(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsById(s);
     }
 
 
     public WebElement findElementByLinkText(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementByLinkText(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementByLinkText(s);
     }
 
 
     public List<WebElement> findElementsByLinkText(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsByLinkText(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsByLinkText(s);
     }
-
 
     public WebElement findElementByPartialLinkText(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementByPartialLinkText(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementByPartialLinkText(s);
     }
-
 
     public List<WebElement> findElementsByPartialLinkText(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsByPartialLinkText(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsByPartialLinkText(s);
     }
-
 
     public WebElement findElementByName(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementByName(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementByName(s);
     }
-
 
     public List<WebElement> findElementsByName(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsByName(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsByName(s);
     }
-
 
     public WebElement findElementByTagName(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementByTagName(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementByTagName(s);
     }
-
 
     public List<WebElement> findElementsByTagName(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsByTagName(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsByTagName(s);
     }
-
 
     public WebElement findElementByXPath(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<WebElement>() {
-
-            public WebElement run(SelenideElement element) {
-                return element.findElementByXPath(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementByXPath(s);
     }
-
 
     public List<WebElement> findElementsByXPath(final String s) {
-        return withWaitForElement(self).run(new ElementCommand<List<WebElement>>() {
-
-            public List<WebElement> run(SelenideElement element) {
-                return element.findElementsByXPath(s);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.findElementsByXPath(s);
     }
-
 
     public Coordinates getCoordinates() {
-        return withWaitForElement(self).run(new ElementCommand<Coordinates>() {
-
-            public Coordinates run(SelenideElement element) {
-                return element.getCoordinates();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getCoordinates();
     }
 
-
     public WebDriver getWrappedDriver() {
-        return withWaitForElement(self).run(new ElementCommand<WebDriver>() {
-
-            public WebDriver run(SelenideElement element) {
-                return element.getWrappedDriver();
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        return self.getWrappedDriver();
     }
 }

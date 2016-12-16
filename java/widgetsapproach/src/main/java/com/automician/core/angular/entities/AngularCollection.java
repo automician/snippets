@@ -1,13 +1,12 @@
 package com.automician.core.angular.entities;
 
-import com.automician.core.angular.commands.CollectionCommand;
+import com.automician.core.angular.wait.AngularWait;
 import com.codeborne.selenide.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.automician.core.angular.commands.WithWaitFor.withWaitForCollection;
 
 public class AngularCollection implements Iterable<AngularElement> {
     private ElementsCollection self;
@@ -17,12 +16,8 @@ public class AngularCollection implements Iterable<AngularElement> {
     }
 
     public AngularCollection shouldHave(final CollectionCondition... conditions) {
-        withWaitForCollection(self).run(new CollectionCommand<ElementsCollection>() {
-            @Override
-            public ElementsCollection run(ElementsCollection collection) {
-                return collection.shouldHave(conditions);
-            }
-        });
+        AngularWait.forRequestsToFinish();
+        self.shouldHave(conditions);
         return this;
     }
 
@@ -31,33 +26,18 @@ public class AngularCollection implements Iterable<AngularElement> {
     }
 
     public AngularElement get(final int index) {
-        SelenideElement element = withWaitForCollection(self).run(new CollectionCommand<SelenideElement>() {
-            @Override
-            public SelenideElement run(ElementsCollection collection) {
-                return collection.get(index);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.get(index));
     }
 
     public AngularCollection filter(final Condition condition) {
-        ElementsCollection collection = withWaitForCollection(self).run(new CollectionCommand<ElementsCollection>() {
-            @Override
-            public ElementsCollection run(ElementsCollection collection) {
-                return collection.filter(condition);
-            }
-        });
-        return new AngularCollection(collection);
+        AngularWait.forRequestsToFinish();
+        return new AngularCollection(self.filter(condition));
     }
 
     public AngularElement find(final Condition condition) {
-        SelenideElement element = withWaitForCollection(self).run(new CollectionCommand<SelenideElement>() {
-            @Override
-            public SelenideElement run(ElementsCollection collection) {
-                return collection.find(condition);
-            }
-        });
-        return new AngularElement(element);
+        AngularWait.forRequestsToFinish();
+        return new AngularElement(self.find(condition));
     }
 
     public AngularElement findBy(final Condition condition) {
