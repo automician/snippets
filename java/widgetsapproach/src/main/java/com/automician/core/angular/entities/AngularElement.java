@@ -3,6 +3,7 @@ package com.automician.core.angular.entities;
 import com.automician.core.angular.wait.AngularWait;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.UIAssertionError;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.internal.Coordinates;
 
@@ -11,24 +12,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AngularElement {
 
-    SelenideElement self;
+    SelenideElement element;
 
     public AngularElement(SelenideElement element) {
-        this.self = element;
+        this.element = element;
     }
 
-
     public void followLink() {
-        AngularWait.forRequestsToFinish();
-        self.followLink();
+        AngularWait.waitForRequestsToFinish();
+        this.element.followLink();
     }
 
     public AngularElement setValue(final String text) {
-        AngularWait.forRequestsToFinish();
-        self.setValue(text);
+        AngularWait.waitForRequestsToFinish();
+        this.element.setValue(text);
         return this;
     }
 
@@ -36,584 +38,518 @@ public class AngularElement {
         return setValue(text);
     }
 
-
     public AngularElement append(final String text) {
-        AngularWait.forRequestsToFinish();
-        self.append(text);
+        AngularWait.waitForRequestsToFinish();
+        this.element.append(text);
         return this;
     }
-
 
     public AngularElement pressEnter() {
         sendKeys(Keys.ENTER);
         return this;
     }
 
-
     public AngularElement pressTab() {
         sendKeys(Keys.TAB);
         return this;
     }
-
 
     public AngularElement pressEscape() {
         sendKeys(Keys.ESCAPE);
         return this;
     }
 
-
     public String getText() {
-        AngularWait.forRequestsToFinish();
-        return self.getText();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getText();
     }
-
 
     public List<WebElement> findElements(final By by) {
-        AngularWait.forRequestsToFinish();
-        return self.findElements(by);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElements(by);
     }
-
 
     public WebElement findElement(final By by) {
-        AngularWait.forRequestsToFinish();
-        return self.findElement(by);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElement(by);
     }
-
 
     public String text() {
-        AngularWait.forRequestsToFinish();
-        return self.text();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.text();
     }
-
 
     public String innerText() {
-        AngularWait.forRequestsToFinish();
-        return self.innerText();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.innerText();
     }
-
 
     public String innerHtml() {
-        AngularWait.forRequestsToFinish();
-        return self.innerHtml();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.innerHtml();
     }
-
 
     public String attr(final String attributeName) {
-        AngularWait.forRequestsToFinish();
-        return self.attr(attributeName);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.attr(attributeName);
     }
-
 
     public String name() {
-        AngularWait.forRequestsToFinish();
-        return self.name();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.name();
     }
-
 
     public String val() {
-        AngularWait.forRequestsToFinish();
-        return self.val();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.val();
     }
-
 
     public String getValue() {
         return val();
     }
 
-
     public AngularElement selectRadio(final String value) {
-        AngularWait.forRequestsToFinish();
-        self.selectRadio(value);
+        AngularWait.waitForRequestsToFinish();
+        this.element.selectRadio(value);
         return this;
     }
 
-
     public String data(final String dataAttributeName) {
-        AngularWait.forRequestsToFinish();
-        return self.data(dataAttributeName);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.data(dataAttributeName);
     }
-
 
     public boolean exists() {
-        AngularWait.forRequestsToFinish();
-        return self.exists();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.exists();
     }
-
 
     public boolean isDisplayed() {
-        AngularWait.forRequestsToFinish();
-        return self.isDisplayed();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.isDisplayed();
     }
-
 
     public Point getLocation() {
-        AngularWait.forRequestsToFinish();
-        return self.getLocation();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getLocation();
     }
-
 
     public Dimension getSize() {
-        AngularWait.forRequestsToFinish();
-        return self.getSize();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getSize();
     }
-
 
     public Rectangle getRect() {
-        AngularWait.forRequestsToFinish();
-        return self.getRect();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getRect();
     }
-
 
     public String getCssValue(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.getCssValue(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getCssValue(s);
     }
-
 
     public boolean is(final Condition condition) {
-        AngularWait.forRequestsToFinish();
-        return self.is(condition);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.is(condition);
     }
-
 
     public boolean has(final Condition condition) {
         return is(condition);
     }
 
-
     public AngularElement setSelected(final boolean selected) {
-        AngularWait.forRequestsToFinish();
-        self.setSelected(selected);
+        AngularWait.waitForRequestsToFinish();
+        this.element.setSelected(selected);
         return this;
     }
-
 
     public AngularElement should(final Condition... condition) {
-        AngularWait.forRequestsToFinish();
-        self.should(condition);
+        AngularWait.waitForRequestsToFinish();
+        this.element.should(condition);
         return this;
     }
-
 
     public AngularElement shouldHave(Condition... condition) {
         return should(condition);
     }
 
-
     public AngularElement shouldBe(Condition... condition) {
         return should(condition);
     }
 
-
-    public AngularElement shouldNot(final Condition... condition) {
-        AngularWait.forRequestsToFinish();
-        self.shouldNot(condition);
-        return this;
+    public boolean waitingIs(Condition condition) {
+        try {
+            shouldBe(condition);
+            return true;
+        } catch (UIAssertionError e) {
+            return false;
+        }
     }
 
+    public AngularElement shouldNot(final Condition... condition) {
+        AngularWait.waitForRequestsToFinish();
+        this.element.shouldNot(condition);
+        return this;
+    }
 
     public AngularElement shouldNotHave(Condition... condition) {
         return shouldNot(condition);
     }
 
-
     public AngularElement shouldNotBe(Condition... condition) {
         return shouldNot(condition);
     }
 
-
     public AngularElement waitUntil(final Condition condition, final long timeoutMilliseconds) {
-        AngularWait.forRequestsToFinish();
-        self.waitUntil(condition, timeoutMilliseconds);
+        AngularWait.waitForRequestsToFinish();
+        this.element.waitUntil(condition, timeoutMilliseconds);
         return this;
     }
-
 
     public AngularElement waitUntil(final Condition condition, final long timeoutMilliseconds, final long pollingIntervalMilliseconds) {
-        AngularWait.forRequestsToFinish();
-        self.waitUntil(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
+        AngularWait.waitForRequestsToFinish();
+        this.element.waitUntil(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
         return this;
     }
-
 
     public AngularElement waitWhile(final Condition condition, final long timeoutMilliseconds) {
-        AngularWait.forRequestsToFinish();
-        self.waitWhile(condition, timeoutMilliseconds);
+        AngularWait.waitForRequestsToFinish();
+        this.element.waitWhile(condition, timeoutMilliseconds);
         return this;
     }
-
 
     public AngularElement waitWhile(final Condition condition, final long timeoutMilliseconds, final long pollingIntervalMilliseconds) {
-        AngularWait.forRequestsToFinish();
-        self.waitWhile(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
+        AngularWait.waitForRequestsToFinish();
+        this.element.waitWhile(condition, timeoutMilliseconds, pollingIntervalMilliseconds);
         return this;
     }
-
 
     public AngularElement parent() {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.parent());
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.parent());
     }
-
 
     public AngularElement closest(final String tagOrClass) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.closest(tagOrClass));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.closest(tagOrClass));
     }
-
 
     public AngularElement find(final String cssSelector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.find(cssSelector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.find(cssSelector));
     }
-
 
     public AngularElement find(final String cssSelector, final int index) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.find(cssSelector, index));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.find(cssSelector, index));
     }
-
 
     public AngularElement find(final By selector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.find(selector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.find(selector));
     }
-
 
     public AngularElement find(final By selector, final int index) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.find(selector, index));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.find(selector, index));
     }
-
 
     public AngularElement $(final String cssSelector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.$(cssSelector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.$(cssSelector));
     }
-
 
     public AngularElement $(final String cssSelector, final int index) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.$(cssSelector, index));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.$(cssSelector, index));
     }
-
 
     public AngularElement $(final By selector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.$(selector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.$(selector));
     }
-
 
     public AngularElement $(final By selector, final int index) {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.$(selector, index));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.$(selector, index));
     }
-
 
     public AngularCollection findAll(final String cssSelector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularCollection(self.findAll(cssSelector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularCollection(this.element.findAll(cssSelector));
     }
-
 
     public AngularCollection findAll(final By selector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularCollection(self.findAll(selector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularCollection(this.element.findAll(selector));
     }
-
 
     public AngularCollection $$(final String cssSelector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularCollection(self.$$(cssSelector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularCollection(this.element.$$(cssSelector));
     }
-
 
     public AngularCollection $$(final By selector) {
-        AngularWait.forRequestsToFinish();
-        return new AngularCollection(self.$$(selector));
+        //AngularWait.waitForRequestsToFinish();
+        return new AngularCollection(this.element.$$(selector));
     }
-
 
     public File uploadFromClasspath(final String... fileName) {
-        AngularWait.forRequestsToFinish();
-        return self.uploadFromClasspath(fileName);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.uploadFromClasspath(fileName);
     }
-
 
     public File uploadFile(final File... file) {
-        AngularWait.forRequestsToFinish();
-        return self.uploadFile(file);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.uploadFile(file);
     }
-
 
     public void selectOption(final int... index) {
-        AngularWait.forRequestsToFinish();
-        self.selectOption(index);
+        AngularWait.waitForRequestsToFinish();
+        this.element.selectOption(index);
     }
-
 
     public void selectOption(final String... text) {
-        AngularWait.forRequestsToFinish();
-        self.selectOption(text);
+        AngularWait.waitForRequestsToFinish();
+        this.element.selectOption(text);
     }
-
 
     public void selectOptionByValue(final String... value) {
-        AngularWait.forRequestsToFinish();
-        self.selectOption(value);
+        AngularWait.waitForRequestsToFinish();
+        this.element.selectOption(value);
     }
-
 
     public AngularElement getSelectedOption() throws NoSuchElementException {
-        AngularWait.forRequestsToFinish();
-        return new AngularElement(self.getSelectedOption());
+        AngularWait.waitForRequestsToFinish();
+        return new AngularElement(this.element.getSelectedOption());
     }
-
 
     public AngularCollection getSelectedOptions() {
-        AngularWait.forRequestsToFinish();
-        return new AngularCollection(self.getSelectedOptions());
+        AngularWait.waitForRequestsToFinish();
+        return new AngularCollection(this.element.getSelectedOptions());
     }
-
 
     public String getSelectedValue() {
-        AngularWait.forRequestsToFinish();
-        return self.getSelectedValue();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getSelectedValue();
     }
-
 
     public String getSelectedText() {
-        AngularWait.forRequestsToFinish();
-        return self.getSelectedText();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getSelectedText();
     }
-
 
     public AngularElement scrollTo() {
-        AngularWait.forRequestsToFinish();
-        self.scrollTo();
+        AngularWait.waitForRequestsToFinish();
+        this.element.scrollTo();
         return this;
     }
-
 
     public File download() throws FileNotFoundException {
-        AngularWait.forRequestsToFinish();
-        return self.download();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.download();
     }
-
 
     public WebElement toWebElement() {
-        AngularWait.forRequestsToFinish();
-        return self.toWebElement();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.toWebElement();
     }
-
 
     public WebElement getWrappedElement() {
-        AngularWait.forRequestsToFinish();
-        return self.getWrappedElement();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getWrappedElement();
     }
-
 
     public void click() {
-        AngularWait.forRequestsToFinish();
-        self.click();
+        AngularWait.waitForRequestsToFinish();
+        this.element.click();
     }
-
 
     public void submit() {
-        AngularWait.forRequestsToFinish();
-        self.submit();
+        AngularWait.waitForRequestsToFinish();
+        this.element.submit();
     }
-
 
     public void sendKeys(final CharSequence... charSequences) {
-        AngularWait.forRequestsToFinish();
-        self.sendKeys(charSequences);
+        AngularWait.waitForRequestsToFinish();
+        this.element.sendKeys(charSequences);
     }
-
 
     public void clear() {
-        AngularWait.forRequestsToFinish();
-        self.clear();
+        AngularWait.waitForRequestsToFinish();
+        this.element.clear();
     }
-
 
     public String getTagName() {
-        AngularWait.forRequestsToFinish();
-        return self.getTagName();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getTagName();
     }
-
 
     public String getAttribute(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.getAttribute(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getAttribute(s);
     }
-
 
     public boolean isSelected() {
-        AngularWait.forRequestsToFinish();
-        return self.isSelected();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.isSelected();
     }
-
 
     public boolean isEnabled() {
-        AngularWait.forRequestsToFinish();
-        return self.isEnabled();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.isEnabled();
     }
-
 
     public AngularElement contextClick() {
-        AngularWait.forRequestsToFinish();
-        self.contextClick();
+        AngularWait.waitForRequestsToFinish();
+        this.element.contextClick();
         return this;
     }
-
 
     public AngularElement doubleClick() {
-        AngularWait.forRequestsToFinish();
-        self.doubleClick();
+        AngularWait.waitForRequestsToFinish();
+        this.element.doubleClick();
         return this;
     }
-
 
     public AngularElement hover() {
-        AngularWait.forRequestsToFinish();
-        self.hover();
+        AngularWait.waitForRequestsToFinish();
+        this.element.hover();
         return this;
     }
-
 
     public AngularElement dragAndDropTo(final String targetCssSelector) {
-        AngularWait.forRequestsToFinish();
-        self.dragAndDropTo(targetCssSelector);
+        AngularWait.waitForRequestsToFinish();
+        this.element.dragAndDropTo(targetCssSelector);
         return this;
     }
-
 
     public AngularElement dragAndDropTo(final WebElement target) {
-        AngularWait.forRequestsToFinish();
-        self.dragAndDropTo(target);
+        AngularWait.waitForRequestsToFinish();
+        this.element.dragAndDropTo(target);
         return this;
     }
 
-
     public boolean isImage() {
-        AngularWait.forRequestsToFinish();
-        return self.isImage();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.isImage();
     }
-
 
     public File screenshot() {
-        AngularWait.forRequestsToFinish();
-        return self.screenshot();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.screenshot();
     }
-
 
     public BufferedImage screenshotAsImage() {
-        AngularWait.forRequestsToFinish();
-        return self.screenshotAsImage();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.screenshotAsImage();
     }
-
 
     public <X> X getScreenshotAs(final OutputType<X> outputType) throws WebDriverException {
-        AngularWait.forRequestsToFinish();
-        return self.getScreenshotAs(outputType);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getScreenshotAs(outputType);
     }
-
 
     public WebElement findElementByClassName(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementByClassName(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementByClassName(s);
     }
-
 
     public List<WebElement> findElementsByClassName(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsByClassName(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsByClassName(s);
     }
-
 
     public WebElement findElementByCssSelector(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementByCssSelector(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementByCssSelector(s);
     }
-
 
     public List<WebElement> findElementsByCssSelector(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsByCssSelector(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsByCssSelector(s);
     }
-
 
     public WebElement findElementById(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementById(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementById(s);
     }
-
 
     public List<WebElement> findElementsById(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsById(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsById(s);
     }
-
 
     public WebElement findElementByLinkText(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementByLinkText(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementByLinkText(s);
     }
 
-
     public List<WebElement> findElementsByLinkText(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsByLinkText(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsByLinkText(s);
     }
 
     public WebElement findElementByPartialLinkText(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementByPartialLinkText(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementByPartialLinkText(s);
     }
 
     public List<WebElement> findElementsByPartialLinkText(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsByPartialLinkText(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsByPartialLinkText(s);
     }
 
     public WebElement findElementByName(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementByName(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementByName(s);
     }
 
     public List<WebElement> findElementsByName(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsByName(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsByName(s);
     }
 
     public WebElement findElementByTagName(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementByTagName(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementByTagName(s);
     }
 
     public List<WebElement> findElementsByTagName(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsByTagName(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsByTagName(s);
     }
 
     public WebElement findElementByXPath(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementByXPath(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementByXPath(s);
     }
 
     public List<WebElement> findElementsByXPath(final String s) {
-        AngularWait.forRequestsToFinish();
-        return self.findElementsByXPath(s);
+        AngularWait.waitForRequestsToFinish();
+        return this.element.findElementsByXPath(s);
     }
 
     public Coordinates getCoordinates() {
-        AngularWait.forRequestsToFinish();
-        return self.getCoordinates();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getCoordinates();
     }
 
     public WebDriver getWrappedDriver() {
-        AngularWait.forRequestsToFinish();
-        return self.getWrappedDriver();
+        AngularWait.waitForRequestsToFinish();
+        return this.element.getWrappedDriver();
     }
+
+    //scrollTo works not always
+    //scrollWithOffset(0, -150); - this variant doesn't help in situations when something is shown under the header
+    public AngularElement scrollWithOffset(int x, int y) {
+        shouldBe(visible);
+
+        String code = "window.scroll(" + (this.element.getLocation().x + x) + "," + (this.element.getLocation().y + y) + ");";
+        ((JavascriptExecutor) getWebDriver()).executeScript(code, element, x, y);
+
+        return this;
+    }
+
 }
