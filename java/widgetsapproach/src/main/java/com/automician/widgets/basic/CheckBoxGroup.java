@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.automician.core.locators.Locators.dt;
+import static com.codeborne.selenide.Condition.checked;
 
 public class CheckBoxGroup {
 
@@ -31,9 +32,15 @@ public class CheckBoxGroup {
         return this.container.find("....");//replace to appropriate case
     }
 
-    public void clickAll() {
-        for (AngularElement element:getElements()) {
-                element.click();
+    public void toggleAll() {
+        for (AngularElement element : getElements()) {
+            element.click();
+        }
+    }
+
+    public void checkAll() {
+        for (AngularElement element : getElements()) {
+            element.shouldNotBe(checked).click();
         }
     }
 
