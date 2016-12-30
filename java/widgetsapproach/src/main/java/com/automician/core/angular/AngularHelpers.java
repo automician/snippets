@@ -2,24 +2,26 @@ package com.automician.core.angular;
 
 import com.automician.core.angular.entities.AngularCollection;
 import com.automician.core.angular.entities.AngularElement;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 public class AngularHelpers {
 
-    public static AngularElement $(By elementLocator) {
+    public static SelenideElement $(By elementLocator) {
         return new AngularElement(Selenide.$(elementLocator));
     }
 
-    public static AngularElement $(String cssSelector) {
+    public static SelenideElement $(String cssSelector) {
         return $(By.cssSelector(cssSelector));
     }
 
-    public static AngularCollection $$(By elementsLocator) {
+    public static ElementsCollection $$(By elementsLocator) {
         return new AngularCollection(Selenide.$$(elementsLocator));
     }
 
-    public static AngularCollection $$(String cssSelector) {
+    public static ElementsCollection $$(String cssSelector) {
         return $$(By.cssSelector(cssSelector));
     }
 

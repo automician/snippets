@@ -1,6 +1,6 @@
 package com.automician.widgets.basic;
 
-import com.automician.core.angular.entities.AngularElement;
+import com.codeborne.selenide.SelenideElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,29 +9,25 @@ import static com.automician.core.locators.Locators.dt;
 
 public class TextFieldGroup {
 
-    private AngularElement container;
-    private String[] attrDataTestValues;
+    private final SelenideElement container;
+    private final String[] attrDataTestValues;
 
-    public TextFieldGroup(AngularElement container, String... attrDataTestValues) {
+    public TextFieldGroup(SelenideElement container, String... attrDataTestValues) {
         this.container = container;
         this.attrDataTestValues = attrDataTestValues;
     }
 
-    private List<AngularElement> getElements() {
-        List<AngularElement> elements = new ArrayList<AngularElement>();
+    private List<SelenideElement> getElements() {
+        List<SelenideElement> elements = new ArrayList<SelenideElement>();
 
         for (String attrDataTestValue : this.attrDataTestValues) {
-            elements.add(getElement(attrDataTestValue));
+            elements.add(this.container.find(dt(attrDataTestValue)));
         }
         return elements;
     }
 
-    private AngularElement getElement(String attrDataTestValue) {
-        return this.container.find("...");//replace ... to appropriate value
-    }
-
     public void fill(String... texts) {
-        List<AngularElement> elements = getElements();
+        List<SelenideElement> elements = getElements();
 
         for (int i = 0; i < Math.min(texts.length, elements.size()); i++) {
             elements.get(i).setValue(texts[i]);

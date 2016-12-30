@@ -2,7 +2,10 @@ package com.automician.core.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
+
+import static java.lang.System.currentTimeMillis;
 
 
 public class UniqueData {
@@ -14,17 +17,19 @@ public class UniqueData {
     }
 
     public String the(String name, String suffix) {
-        if (!dataContainer.containsKey(name)) {
-            dataContainer.put(name, name + UUID.randomUUID() + suffix);
+        if (!this.dataContainer.containsKey(name)) {
+            //dataContainer.put(name, name + UUID.randomUUID() + suffix);
+            //this.dataContainer.put(name, name + System.currentTimeMillis() + suffix);
+            this.dataContainer.put(name, name +  (new Random().nextInt(Integer.MAX_VALUE)) + suffix);
         }
-        return dataContainer.get(name);
+        return this.dataContainer.get(name);
     }
 
     public void clearUniqueData() {
-        dataContainer.clear();
+        this.dataContainer.clear();
     }
 
     public void deleteUniqueData(String name) {
-        dataContainer.remove(name);
+        this.dataContainer.remove(name);
     }
 }

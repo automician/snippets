@@ -1,24 +1,25 @@
 package com.automician.widgets.basic;
 
-import com.automician.core.angular.entities.AngularElement;
+import com.codeborne.selenide.SelenideElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import static com.automician.core.helpers.AdditionalSelenideAPI.scrollWithOffsetOn;
 import static com.automician.core.locators.Locators.dt;
 
 public class DateGroup {
 
-    private AngularElement container;
+    private final SelenideElement container;
+    private final SelenideElement dayElement;
+    private final SelenideElement monthElement;
+    private final SelenideElement yearElement;
 
-    private AngularElement dayElement;
-    private AngularElement monthElement;
-    private AngularElement yearElement;
-
-    public DateGroup(AngularElement container) {
+    public DateGroup(SelenideElement container, SelenideElement dayElement, SelenideElement monthElement, SelenideElement yearElement) {
         this.container = container;
-        this.dayElement = this.container.find("...");//replace ... to default value
-        this.monthElement = this.container.find("...").parent();//replace ... to default value
-        this.yearElement = this.container.find("...");//replace ... to default value
+        this.dayElement = dayElement;
+        this.monthElement = monthElement;
+        this.yearElement = yearElement;
     }
+
 
     private DateGroup setDay(int day) {
         this.dayElement.setValue(String.valueOf(day));
@@ -26,8 +27,13 @@ public class DateGroup {
     }
 
     private DateGroup setMonth(int month) {
-        this.monthElement.scrollWithOffset(0, -150);//without scroll error for firefox in Xvfb run - header shows over month element
-        new DropDownList(this.monthElement).open().select(month-1);
+        scrollWithOffsetOn(this.monthElement, 0, -150);//without scroll error for firefox in Xvfb run - header shows over month element
+        new DropDownList(
+                this.monthElement,
+                "..." //to use items selector
+        )
+                .open()
+                .select(month - 1);
         return this;
     }
 

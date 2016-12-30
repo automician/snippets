@@ -1,23 +1,21 @@
 package com.automician.widgets.basic;
 
-import com.automician.core.angular.entities.AngularCollection;
-import com.automician.core.angular.entities.AngularElement;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 public class Buttons {
 
-    private AngularElement container;
+    private final SelenideElement container;
+    private final ElementsCollection items;
 
-    private AngularCollection items;
-
-    public Buttons (AngularElement container) {
+    public Buttons(SelenideElement container, String itemsCssSelector) {
         this.container = container;
-        this.items = this.container.findAll("...");//replace ... to default value
+        this.items = this.container.findAll(itemsCssSelector);
     }
 
-    public Buttons withItems(String cssSelector) {
-        this.items = this.container.findAll(cssSelector);
-        return this;
+    public Buttons(SelenideElement container) {
+        this(container, "...");//to use default itemsCssSelector
     }
 
     public void click(Condition condition) {

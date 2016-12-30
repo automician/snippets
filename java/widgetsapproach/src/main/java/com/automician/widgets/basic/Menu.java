@@ -1,23 +1,25 @@
 package com.automician.widgets.basic;
 
-import com.automician.core.angular.entities.AngularCollection;
-import com.automician.core.angular.entities.AngularElement;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.exactText;
 
 public class Menu {
 
-    private AngularElement container;
-    private AngularCollection items;
+    private final SelenideElement container;
+    private final ElementsCollection items;
 
-    public Menu(AngularElement container) {
+    public Menu(SelenideElement container, ElementsCollection items) {
         this.container = container;
-        this.items = container.findAll("...");//replace ... to default value
+        this.items = items;
     }
 
-    public Menu withItems(AngularCollection items) {
-        this.items = items;
-        return this;
+    public Menu(SelenideElement container) {
+        this(
+                container,
+                container.findAll("ul>li") //to use default items collection
+        );
     }
 
     public Menu open() {

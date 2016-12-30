@@ -1,6 +1,5 @@
 package com.automician.core;
 
-import com.automician.core.angular.entities.AngularElement;
 import com.automician.core.angular.wait.AngularWait;
 import com.automician.core.checks.Assertions;
 import com.automician.core.checks.CustomConditions;
@@ -8,7 +7,6 @@ import com.automician.core.helpers.UniqueData;
 import com.automician.core.locators.Locators;
 import com.automician.core.properties.PropertiesReader;
 import com.codeborne.selenide.*;
-import com.codeborne.selenide.ex.UIAssertionError;
 
 public class Core {
 
@@ -29,17 +27,8 @@ public class Core {
         return new Assertions();
     }
 
-    public boolean waitingIs(AngularElement element, Condition condition) {
-        try {
-            element.should(condition);
-            return true;
-        } catch (UIAssertionError e) {
-            return false;
-        }
-    }
-
     public AngularWait angular() {
-        return angular;
+        return this.angular;
     }
 
     public void open(String url) {
@@ -50,12 +39,12 @@ public class Core {
         return new PropertiesReader();
     }
 
-    public UniqueData uniqueData() {
-        return uniqueData;
-    }
-
     public CustomConditions conditions() {
         return new CustomConditions();
+    }
+
+    public UniqueData uniqueData() {
+        return this.uniqueData;
     }
 
     public String unique(String name) {
