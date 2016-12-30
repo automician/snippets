@@ -15,7 +15,7 @@ public class Buttons {
     }
 
     public Buttons(SelenideElement container) {
-        this(container, "...");//to use fill default css selector for items
+        this(container, ".your-item-locator");
     }
 
     public void clickBy(Condition condition) {

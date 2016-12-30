@@ -27,7 +27,7 @@ public class DropDownList {
     public DropDownList(SelenideElement container) {
         this(
                 container,
-                "..." //to use fill default css selector for items
+                ".your-items-locator"
         );
     }
 

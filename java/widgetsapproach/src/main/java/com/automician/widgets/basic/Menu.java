@@ -18,7 +18,7 @@ public class Menu {
     public Menu(SelenideElement container) {
         this(
                 container,
-                container.findAll("ul>li") //to use default items collection
+                container.findAll(".your-items-locator")
         );
     }
 

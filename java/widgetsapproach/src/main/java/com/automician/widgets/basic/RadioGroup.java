@@ -16,8 +16,4 @@ public class RadioGroup {
     public void clickOn(By itemLocator) {
         this.container.find(itemLocator).click();
     }
-
-    public void clickOn(Object attrDataTestValue) {
-        this.clickOn(String.valueOf(attrDataTestValue));
-    }
 }
