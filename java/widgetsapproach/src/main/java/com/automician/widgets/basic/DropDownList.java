@@ -24,20 +24,27 @@ public class DropDownList {
         );
     }
 
+    public DropDownList(SelenideElement container) {
+        this(
+                container,
+                "..." //to use fill default css selector for items
+        );
+    }
+
     public DropDownList open() {
         this.container.click();
         return this;
     }
 
     public void select(String itemText) {
-        select(exactText(itemText));
+        selectBy(exactText(itemText));
     }
 
     public void select(By itemLocator) {
         this.container.find(itemLocator).click();
     }
 
-    public void select(Condition condition) {
+    public void selectBy(Condition condition) {
         this.items.find(condition).click();
     }
 

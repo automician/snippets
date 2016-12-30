@@ -15,15 +15,15 @@ public class Buttons {
     }
 
     public Buttons(SelenideElement container) {
-        this(container, "...");//to use default itemsCssSelector
+        this(container, "...");//to use fill default css selector for items
     }
 
-    public void click(Condition condition) {
+    public void clickBy(Condition condition) {
         this.items.find(condition).click();
     }
 
     public void click(String buttonText) {
-        click(Condition.exactText(buttonText));
+        clickBy(Condition.exactText(buttonText));
     }
 
 }
