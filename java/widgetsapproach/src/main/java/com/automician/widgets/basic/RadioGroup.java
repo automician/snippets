@@ -3,7 +3,6 @@ package com.automician.widgets.basic;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
-import static com.automician.core.locators.Locators.dt;
 
 public class RadioGroup {
 

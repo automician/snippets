@@ -18,8 +18,6 @@ public class UniqueData {
 
     public String the(String name, String suffix) {
         if (!this.dataContainer.containsKey(name)) {
-            //dataContainer.put(name, name + UUID.randomUUID() + suffix);
-            //this.dataContainer.put(name, name + System.currentTimeMillis() + suffix);
             this.dataContainer.put(name, name +  (new Random().nextInt(Integer.MAX_VALUE)) + suffix);
         }
         return this.dataContainer.get(name);

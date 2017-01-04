@@ -3,8 +3,6 @@ package com.automician.widgets.basic;
 import com.codeborne.selenide.SelenideElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import static com.automician.core.helpers.AdditionalSelenideAPI.scrollWithOffsetOn;
-import static com.automician.core.locators.Locators.dt;
 
 public class DateGroup {
 
@@ -27,7 +25,6 @@ public class DateGroup {
     }
 
     private DateGroup setMonth(int month) {
-        scrollWithOffsetOn(this.monthElement, 0, -150);//without scroll error for firefox in Xvfb run - header shows over month element
         new DropDownList(
                 this.monthElement,
                 "..." //to use items selector

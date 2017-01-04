@@ -8,12 +8,12 @@ import com.codeborne.selenide.SelenideElement;
 public class TextFieldGroup {
 
     private final SelenideElement container;
-    private final String[] attrDataTestValues;
+    private final String[] attrValues;
     private final ElementsCollection items;
 
-    public TextFieldGroup(SelenideElement container, ElementsCollection items, String... attrDataTestValues) {
+    public TextFieldGroup(SelenideElement container, ElementsCollection items, String... attrValues) {
         this.container = container;
-        this.attrDataTestValues = attrDataTestValues;
+        this.attrValues = attrValues;
         this.items = items;
     }
 

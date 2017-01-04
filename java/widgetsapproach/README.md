@@ -23,7 +23,6 @@ To fix some approaches in widget usage
     * based on open source [ngWebDriver's](https://github.com/paul-hammant/ngWebDriver) implementation
     * for smart waiting of finishing async "loading" used ExpectedCondition based on wait for Angular
     * to use element's or collection's methods with these waits realized wrappers around SelenideElement element and ElementsCollection    
-  * Methods to access to elements with 'data-test' attribute
   * Unique data generator 
     * each generated value has a name
     * each value can be get by its name

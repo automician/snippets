@@ -7,43 +7,25 @@ import java.util.List;
 
 public class Locators {
 
-    public static By dt(String attrDataTestValue) {
-        return attrValue("data-test", attrDataTestValue);
+    public static By attrValue(String attrName, String attrValue) {
+        return By.cssSelector(getAttrValueSelector(attrName, attrValue));
     }
 
-    public static By dtStarts(String attrDataTestValue) {
-        return attrValueStarts("data-test", attrDataTestValue);
+    public static By attrValueStarts(String attrName, String attrValue) {
+        return By.cssSelector(getAttrValueSelector(attrName, attrValue, "^="));
     }
 
-    public static By oneOfDt(String... attrDataTestValues) {
-        return oneOfAttrValues("data-test", attrDataTestValues);
-    }
-
-    //xpath = //*[@data-test='agb' or @data-test='security']/..
-    //get elements with attr data-test and next get their parent
-    public static By childHasOneOfDt(String... attrDataTestValues) {
-        return childHasOneOfAttrValues("data-test", attrDataTestValues);
-    }
-
-    public static By attrValue(String attrName, String attrDataTestValue) {
-        return By.cssSelector(getAttrValueSelector(attrName, attrDataTestValue));
-    }
-
-    public static By attrValueStarts(String attrName, String attrDataTestValue) {
-        return By.cssSelector(getAttrValueSelector(attrName, attrDataTestValue, "^="));
-    }
-
-    public static By oneOfAttrValues(String attrName, String... attrDataTestValues) {
+    public static By oneOfAttrValues(String attrName, String... attrValues) {
         List<String> cssSelectors = new ArrayList<>();
 
-        for (String attrDataTestValue : attrDataTestValues) {
-            cssSelectors.add(getAttrValueSelector(attrName, attrDataTestValue));
+        for (String attrValue : attrValues) {
+            cssSelectors.add(getAttrValueSelector(attrName, attrValue));
         }
         return By.cssSelector(String.join(",", cssSelectors));
     }
 
-    //xpath = //*[@attrName='agb' or @attrName='security']/..
-    //get elements with attr data-test and next get their parent
+    //xpath = //*[@attrName='some  value 1' or @attrName='some value 2']/..
+    //get elements with attr attrName and next get their parent
     public static By childHasOneOfAttrValues(String attrName, String... attrValues) {
         List<String> attrConditions = new ArrayList<>();
 
@@ -53,12 +35,12 @@ public class Locators {
         return By.xpath("//*[" + String.join(" or ", attrConditions) + "]/..");
     }
 
-    private static String getAttrValueSelector(String attrName, String attrDataTestValue) {
-        return getAttrValueSelector(attrName, attrDataTestValue, "=");
+    private static String getAttrValueSelector(String attrName, String attrValue) {
+        return getAttrValueSelector(attrName, attrValue, "=");
     }
 
-    private static String getAttrValueSelector(String attrName, String attrDataTestValue, String operator) {
-        return "[" + attrName + operator + "'" + attrDataTestValue + "']";
+    private static String getAttrValueSelector(String attrName, String attrValue, String operator) {
+        return "[" + attrName + operator + "'" + attrValue + "']";
     }
 
 }
