@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
 import java.util.Properties;
+
 import groovy.util.ConfigSlurper;
 
 import static com.automician.javaproperties.core.CustomConditions.ajaxCompleted;
@@ -19,7 +20,7 @@ public class Helpers {
     public static Properties getProperties() {
 
         Properties profileProperties = new Properties();
-        String profile = System.getProperty("profile","test");
+        String profile = System.getProperty("profile", "test");
 
         try {
             profileProperties = new ConfigSlurper(profile).parse(new File("src/main/resources/config.groovy").toURI().toURL()).toProperties();
@@ -27,23 +28,23 @@ public class Helpers {
             e.printStackTrace();
         }
 
-            Properties systemProperties = System.getProperties();
+        Properties systemProperties = System.getProperties();
 
-            System.out.println("\n[Properties reading] ---------------------------------------------------------");
+        System.out.println("\n[Properties reading] ---------------------------------------------------------");
 
-            for (Map.Entry entry : profileProperties.entrySet()) {
-                String key = String.valueOf(entry.getKey());
-                System.out.println(key + " = " + entry.getValue());
-                if (systemProperties.containsKey(key)) {
-                    String value = systemProperties.getProperty(key);
+        for (Map.Entry entry : profileProperties.entrySet()) {
+            String key = String.valueOf(entry.getKey());
+            System.out.println(key + " = " + entry.getValue());
+            if (systemProperties.containsKey(key)) {
+                String value = systemProperties.getProperty(key);
 
-                    if (!value.isEmpty()) {
-                        profileProperties.setProperty(key, value);
-                        System.out.println(key + " = " + entry.getValue() + " !!! corrected");
-                    }
+                if (!value.isEmpty()) {
+                    profileProperties.setProperty(key, value);
+                    System.out.println(key + " = " + entry.getValue() + " !!! corrected");
                 }
             }
-            System.out.println("[Properties reading] ---------------------------------------------------------\n");
+        }
+        System.out.println("[Properties reading] ---------------------------------------------------------\n");
 
         return profileProperties;
     }
