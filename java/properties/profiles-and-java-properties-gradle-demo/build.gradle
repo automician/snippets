@@ -39,12 +39,18 @@ task wrapper(type: Wrapper) {
     gradleVersion = '3.3'
 }
 
-assemble.dependsOn 'includeResourcesIntoJar'
-task includeResourcesIntoJar(type: Jar) {
-    from('src/main/resources') {
-        include '**'
+jar{
+    from('src/main/resources'){
+        include('**')
     }
 }
+
+//assemble.dependsOn 'includeResourcesIntoJar'
+//task includeResourcesIntoJar(type: Jar) {
+//    from('src/main/resources') {
+//        include '**'
+//    }
+//}
 
 //task sourcesJar(type: Jar, dependsOn: classes) {
 //    classifier = 'sources'
