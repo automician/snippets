@@ -1,6 +1,5 @@
 package com.automician.javaproperties.testconfigs;
 
-import com.automician.javaproperties.core.Helpers;
 import com.automician.javaproperties.core.PropertiesHelper;
 import com.codeborne.selenide.Configuration;
 import org.junit.After;
@@ -8,7 +7,7 @@ import org.junit.Before;
 
 import java.util.Properties;
 
-import static com.automician.javaproperties.core.Helpers.waitUntilAjaxComplete;
+import static com.automician.javaproperties.core.Helpers.waitUntilJQueryLoaded;
 import static com.automician.javaproperties.core.PropertiesHelper.configureTestOn;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
@@ -29,7 +28,7 @@ public class BaseTest {
     @Before
     public void openApp() {
         open(appURL);
-        waitUntilAjaxComplete();
+        waitUntilJQueryLoaded();
     }
 
     @After
