@@ -1,11 +1,9 @@
-#Goal
+# Goal
 Our goal was to illustrate some tools usage to determine test settings
-* [Maven profile properties](https://github.com/automician/snippets/blob/master/java/properties/profile-properties-demo/pom.xml)
-* [Maven surefire plugin to set system properties according to profile properties](https://github.com/automician/snippets/blob/master/java/properties/profile-properties-demo/pom.xml)
- 
- 
+* [Maven profile properties](/java/properties/profile-properties-demo/pom.xml)
+* [Maven surefire plugin to set system properties according to profile properties](/java/properties/profile-properties-demo/pom.xml)
 
-#Examples
+# Examples
 * Run in command line ```mvn clean test -P prod```
 
     information about properties in console 
@@ -38,7 +36,3 @@ Our goal was to illustrate some tools usage to determine test settings
     ```
   
     properties were set according to the system properties filled through the command line
-   
-
-    
-   
