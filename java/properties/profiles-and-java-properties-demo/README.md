@@ -1,12 +1,10 @@
-#Goal
+# Goal
 Our goal was to illustrate some tools usage to determine test settings
-* [Maven profiles and their filtering](https://github.com/automician/snippets/blob/master/java/properties/profiles-and-java-properties-demo/pom.xml)
-* [java .properties files for each  profile](https://github.com/automician/snippets/tree/master/java/properties/profiles-and-java-properties-demo/src/main/resources)
-* [helper for reading properties file and their correction according to system properties which were set in command line](https://github.com/automician/snippets/blob/master/java/properties/profiles-and-java-properties-demo/src/main/java/com/automician/javaproperties/core/Helpers.java)
- 
- 
+* [Maven profiles and their filtering](/java/properties/profiles-and-java-properties-demo/pom.xml)
+* [java .properties files for each  profile](/java/properties/profiles-and-java-properties-demo/src/main/resources)
+* [helper for reading properties file and their correction according to system properties which were set in command line](/java/properties/profiles-and-java-properties-demo/src/main/java/com/automician/javaproperties/core/Helpers.java)
 
-#Examples
+# Examples
 * Run in command line ```mvn clean test -P prod```
     
     information about properties in console 
@@ -36,7 +34,3 @@ Our goal was to illustrate some tools usage to determine test settings
     ```
   
     properties were corrected according to the system properties filled through the command line
-   
-
-    
-   
