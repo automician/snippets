@@ -1,11 +1,11 @@
-#Goal
+# Goal
 Our goal was to illustrate some tools usage to determine test settings
 * [Yandex QATools Properties](https://github.com/qatools/properties)
-* [java .properties files for each properties set](https://github.com/automician/snippets/tree/master/java/properties/yandex-properties-demo/src/main/resources)
-* [helper for reading properties](https://github.com/automician/snippets/blob/master/java/properties/yandex-properties-demo/src/main/java/com/automician/yandexproperties/core/Helpers.java)
+* [java .properties files for each properties set](/java/properties/yandex-properties-demo/src/main/resources)
+* [helper for reading properties](/java/properties/yandex-properties-demo/src/main/java/com/automician/yandexproperties/core/Helpers.java)
   * Properties set reading process provided using factory method pattern for better scalability (this approach differs from QATools approach)  
 
-#Examples
+# Examples
 * Run in command line ```mvn clean test -D env=prod```
     
     in this version system property `env` is used to determine properties set
@@ -35,7 +35,3 @@ Our goal was to illustrate some tools usage to determine test settings
     ```
   
     Yandex QATools Properties values can be overriden using system properties value.
-   
-
-    
-   
