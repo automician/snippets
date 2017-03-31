@@ -1,7 +1,7 @@
-#Goal
+# Goal
 To fix some approaches in widget usage
 
-#"Done" list   
+# "Done" list   
 ## the "core" part of test framework
   * profiles and properties 
     * ensure running tests using different environment 
@@ -30,6 +30,7 @@ To fix some approaches in widget usage
     * and the "unique" part is hidden under the hood... 
     * so everything just works
   * One entry point to access core features
+
 ## The Test Model part
   * based on Widgets pattern (aka [PageObjects by Martin Fowler](http://martinfowler.com/bliki/PageObject.html))
   * implemented in object-oriented style for convenient handy usage in tests
@@ -46,10 +47,11 @@ To fix some approaches in widget usage
     * thus, this approach can provide more readable code in BDD style:
       [reported correspondingly](https://drive.google.com/file/d/0B2UFaKOpHq_MNEM4Y3NTRTAzdlU/view?usp=sharing)
       
-#Profiles
+# Profiles
 * `dev` (by default)
 * `test`
-#Settings
+
+# Settings
 * `data.user.email` and `data.user.password`
   * credentials of user - to be used in tests
 * `test.timeout`
@@ -63,7 +65,7 @@ To fix some approaches in widget usage
   * firefox
   * chrome
    
-#How to run from command line
+# How to run from command line
 * without details
   * `mvn clean test`
     * tests with default profile will be run
@@ -74,7 +76,8 @@ To fix some approaches in widget usage
   * `mvn clean test -Ptest -Dtest.browser=chrome`
     * tests with profile properties overridden by system properties will be executed
     * [example](https://drive.google.com/file/d/0B2UFaKOpHq_Mc1d1VVhDTmVQQzA/view?usp=sharing) 
-#How to get Allure report
+
+# How to get Allure report
 * command line command to generate a report (based on test results of previously executed `mvn clean test`)
   * `mvn site`
 * to open
