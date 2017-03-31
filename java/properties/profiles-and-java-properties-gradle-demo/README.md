@@ -1,13 +1,12 @@
-#Goal
+# Goal
 Our goal was to illustrate some tools usage to determine test settings
 * Gradle project
-* [java .properties files for each  profile](https://github.com/automician/snippets/tree/master/java/properties/profiles-and-java-properties-gradle-demo/src/main/resources)
-* [PropertiesHelper methods for reading properties file and their correction according to system properties which were set in command line](https://github.com/automician/snippets/blob/master/java/properties/profiles-and-java-properties-gradle-demo/src/main/java/com/automician/javaproperties/core/PropertiesHelper.java)
-* [Helpers#waitUntilJQueryLoaded() method to wait until JQuery is loaded](https://github.com/automician/snippets/blob/master/java/properties/profiles-and-java-properties-gradle-demo/src/main/java/com/automician/javaproperties/core/Helper.java)
-* [conditions.Have#jsReturnedTrue condition to implement waiting until some JavaScript code returns true](https://github.com/automician/snippets/blob/master/java/properties/profiles-and-java-properties-gradle-demo/src/main/java/com/automician/javaproperties/core/conditions/Have.java)
+* [java .properties files for each  profile](/java/properties/profiles-and-java-properties-gradle-demo/src/main/resources)
+* [PropertiesHelper methods for reading properties file and their correction according to system properties which were set in command line](/java/properties/profiles-and-java-properties-gradle-demo/src/main/java/com/automician/javaproperties/core/PropertiesHelper.java)
+* [Helpers#waitUntilJQueryLoaded() method to wait until JQuery is loaded](/java/properties/profiles-and-java-properties-gradle-demo/src/main/java/com/automician/javaproperties/core/Helper.java)
+* [conditions.Have#jsReturnedTrue condition to implement waiting until some JavaScript code returns true](/java/properties/profiles-and-java-properties-gradle-demo/src/main/java/com/automician/javaproperties/core/conditions/Have.java)
 
-
-#Examples
+# Examples
 * Run in command line ```gradlew test -Pprofile=prod```
     
     information about properties in console 
@@ -38,13 +37,14 @@ Our goal was to illustrate some tools usage to determine test settings
   
     properties were corrected according to the system properties filled through the command line
     
-#Environment options
+# Environment options
 * `dev` 
 * `prod`
 * `test`(by default)
 
 Environment option determines property file which will be used to run tests
-#Settings
+
+# Settings
 * `app.url`
     * base url of tested application
 * `test.on`
@@ -71,7 +71,3 @@ Environment option determines property file which will be used to run tests
     * grid and firefox
          * to run node where firefox can be used it is important to use  `-Dwebdriver.firefox.marionette=false`
              * `java -Dwebdriver.firefox.marionette=false -jar selenium-server-standalone-3.0.1.jar -role node -hub http://.../grid/register -port …`     
-   
-
-    
-   
