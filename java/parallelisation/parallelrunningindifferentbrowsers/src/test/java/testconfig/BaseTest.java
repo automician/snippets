@@ -25,8 +25,8 @@ public class BaseTest {
     @Parameterized.Parameters
     public static List<String[]> getEnvironments() throws Exception {
         List<String[]> environments = new ArrayList<String[]>();
-        environments.add(new String[]{"chrome", "http://..../wd/hub"});//!!!correct URL od node
-        environments.add(new String[]{"firefox", "http://..../wd/hub"});//!!!correct URL od node
+        environments.add(new String[]{"chrome", "http://..../wd/hub"});//!!!correct URL of grid
+        environments.add(new String[]{"firefox", "http://..../wd/hub"});//!!!correct URL of grid
         return environments;
     }
 
