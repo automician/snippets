@@ -23,8 +23,8 @@ describe('Google.com', function () {
         await browser.url('https://google.com/ncr');
         await browser.element('[name=q]').setValue('webdriverio').keys('Enter');
         await browser.waitUntil(async () =>
-        (await browser.elements('.srg .g'))
-            .value.length == 10);
+            (await browser.elements('.srg .g'))
+                .value.length == 10);
         await browser.waitUntil(async () =>
             (await browser.element('.srg .g:nth-of-type(1)').getText())
                 .includes('WebdriverIO - WebDriver bindings for Node.js'))
