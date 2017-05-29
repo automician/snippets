@@ -13,7 +13,7 @@
   * ```npm install --save webdriverio 
        npm install --save mocha
        npm install --save typescript
-       npm install --save ts-node```
+       npm install --save ts-node
   * explanations       
           * key `--save` is used to automatically save these dependencies in our package.json file
           * [`ts-node`](https://stackoverflow.com/questions/40910864/cannot-find-module-ts-node-register)
@@ -22,7 +22,7 @@
   * ```npm install --save @types/node
        npm install --save @types/mocha
        npm install --save @types/webdriverio
-       npm install --save @types/typescript```
+       npm install --save @types/typescript
   * strings `@types/...` were appeared in `package.json`, in `dependencies` section
   * directory `@types` was created in the directory `node_modules`
     * [explanations](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#types-typeroots-and-types)  
@@ -31,7 +31,7 @@
           "pretest": "npm run tsc",
           "test": "./node_modules/.bin/mocha --reporter spec",
           "tsc": "tsc"
-         },``` 
+         },
     * [explanations](https://docs.npmjs.com/scripts) 
   
   * create file `tsconfig.json`
@@ -53,7 +53,7 @@
              "exclude": [
                "node_modules"
              ]
-           }```
+           }
       * [explanations](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)   
   
   * in the `test` directory, add `mocha.opts` file
