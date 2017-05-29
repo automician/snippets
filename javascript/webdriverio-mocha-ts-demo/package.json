@@ -1,0 +1,23 @@
+{
+  "name": "webdriverio-mocha-ts-demo",
+  "version": "0.0.1",
+  "description": "demo of webdriverio+mocha in typescript",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm run tsc",
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "tsc": "tsc"
+  },
+  "author": "automician",
+  "license": "MIT",
+  "dependencies": {
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.22",
+    "@types/typescript": "^2.0.0",
+    "@types/webdriverio": "^4.7.0",
+    "mocha": "^3.4.2",
+    "ts-node": "^3.0.4",
+    "typescript": "^2.3.3",
+    "webdriverio": "^4.8.0"
+  }
+}
