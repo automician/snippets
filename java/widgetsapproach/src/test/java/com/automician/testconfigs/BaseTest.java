@@ -24,12 +24,12 @@ public class BaseTest {
     }
 
     @After
-    public void tearDown() throws IOException {
-        screenshot();
+    public void makeScreenshot() throws IOException {
+        attachScreenshot();
     }
 
     @Attachment(type = "image/png")
-    public byte[] screenshot() throws IOException {
+    public byte[] attachScreenshot() throws IOException {
         File screenshot = Screenshots.takeScreenShotAsFile();
         return Files.toByteArray(screenshot);
     }
