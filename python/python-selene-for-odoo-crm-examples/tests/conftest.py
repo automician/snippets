@@ -71,7 +71,9 @@ def browser_management():
     yield shared.browser
 
     if (
-        not project.settings.hold_browser_open
+        shared.admin_pro_driver is not ...
+        and shared.admin_pro_driver is not None
+        and not project.settings.admin_pro_hold_browser_open
         and assist.selenium.check.is_alive(shared.browser.driver)
     ):
         shared.browser.quit()
