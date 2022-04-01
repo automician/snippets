@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "python-selene-for-odoo-crm-examples"
+version = "1.0.0"
+description = "python + selene for odoo crm examples"
+authors = ["Iakiv Kramarenko"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+python-dotenv = "^0.19.2"
+pydantic = "^1.8.2"
+pytest = "6.2.1"
+pytest-xdist = "^2.4.0"
+pytest-rerunfailures = "^10.2"
+allure-pytest = "^2.9.45"
+selene = {version = "^2.0.0-alpha.40", allow-prereleases = true}
+pytest-timeout = "^2.0.1"
+orjson = "^3.6.6"
+Faker = "^12.0.0"
+
+[build-system]
+requires = ["poetry>=1.1.11"]
+build-backend = "poetry.masonry.api"
