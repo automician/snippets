@@ -88,7 +88,15 @@ class Form:
                 if value.index is not None:
                     dropdown.select_by_index(value.index)
                 else:
-                    dropdown.autocomplete(value.text)
+                    if value.autocomplete is None:
+                        dropdown.type(value.text)
+
+                    if value.autocomplete is False:
+                        dropdown.find_and_choose(value.text)
+
+                    if value.autocomplete is True:
+                        dropdown.autocomplete(value.text)
+
             elif isinstance(value, Dropdown.Value):
                 dropdown = Dropdown(key, context=self.context)
                 if value.index is not None:

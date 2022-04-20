@@ -26,7 +26,7 @@ from framework.model.controls.dropdown_input import InputDropdown
 from framework.model.controls.form import Form
 from framework.model.controls.modal import Modal
 from framework.model.controls.table import Table
-from framework.model.data import UserData, DeviceData
+from framework.model.data import UserData, AccessData
 from framework.shared import browser
 
 
@@ -99,22 +99,29 @@ def test_login_and_try_to_add_device():
 
     Table().cell(row=have.text('main-phone'), column='«Device ID»').click()
 
+    # First Try
     browser.element('action_share_access').click()
 
     Modal.by_title('«Share Access»').form.fill(AccessData(
         access_label='director access',
-        owner_id=InputDropdown.Value(text='admin@asdfgcompany.com'),
-        receiver_id=InputDropdown.Value(text='jackright@asdfgcompany.com'),
+        owner_id=InputDropdown.Value(
+            text='not-admin@asdfgcompany.com',
+            autocomplete=None,
+        ),
+        key_id=InputDropdown.Value(
+            text='asdf-lkjh-jkli-ieqw',
+            autocomplete=None,
+        ),
+        receiver_id=InputDropdown.Value(
+            text='jackright@asdfgcompany.com',
+            autocomplete=None,
+        ),
     )).submit(
         by_button='do_share'
     ).should_have_validation_for(AccessData(
-        owner_id=...
+        owner_id=...,
+        key_id=...,
     ))
-    # )).submit(by_button=['do_share', 'do_close'])
-    # """
-    # here we could try to submit form by clicking two buttons
-    # but there will be some validation errors...
-    # """
     """
     # OR:
     dialog = Modal.by_title('Share Access').element
@@ -122,5 +129,18 @@ def test_login_and_try_to_add_device():
     dialog.element('owner_id').element('input').type('admin@asdfgcompany.com')
     dialog.element('receiver_id').element('input').type('jackright@asdfgcompany.com')
     dialog.element('do_share').click()
+    # todo: check validation ...
     dialog.element('do_close').click()
+    # ...
     """
+
+    # Second Try
+    browser.element('action_add_device_to_hub').click()
+
+    Modal.by_title('«Share Access»').form.fill(AccessData(
+        device_label='director access',
+        owner_id=InputDropdown.Value(text='admin@'),
+        receiver_id=InputDropdown.Value(text='jackright@asdfgcompany.com'),
+    )).submit(
+        by_button=['do_share', 'do_close']
+    )

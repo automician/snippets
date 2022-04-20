@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import dataclasses
-from typing import Union, Callable
+from typing import Union, Callable, Optional
 
 from selene import Browser, have
 from selene.core.entity import Element as SeleneElement
+from selenium.webdriver import Keys
 
 from framework import shared
 from framework.assist.python.string import is_quoted_with_double_guillemets
@@ -34,6 +35,7 @@ class InputDropdown:
     class Value:
         index: int = None
         text: str = None
+        autocomplete: Optional[bool] = False
 
     def __init__(
             self,
@@ -43,7 +45,7 @@ class InputDropdown:
                 Browser,
                 SeleneElement,
                 Callable[[], Union[Browser, SeleneElement]]
-            ] = lambda: shared.browser
+            ] = lambda: shared.browser,
     ):
         context = (
             context
@@ -57,17 +59,27 @@ class InputDropdown:
         )
         self.input = self.element.element('.ui-autocomplete-input')
         self.button = self.element.element('.o_dropdown_button')
-        self.items = self.element.element(
+        self.items = shared.browser.element(
             '.ui-autocomplete.ui-menu:not([style*="display: none;"])'
         ).all('.ui-menu-item')
-        # self.items = self.element.all('.dropdown-item')
 
     def open(self):
         self.element.click()
         return self
 
-    def autocomplete(self, partial_value: str, /):
-        self.input.type(partial_value).press_enter()
+    def type(self, text):
+        self.input.type(text)
+        return self
+
+    def autocomplete(self, partial_value: str, /, by=Keys.ENTER):
+        self.input.type(partial_value)
+        self.items.should(have.size_greater_than(0))
+        self.input.press(by)
+        return self
+
+    def find_and_choose(self, partial_value: str, /):
+        self.input.type(partial_value)
+        self.choose_by_text(partial_value)
         return self
 
     def choose(self, index_or_item: Union[int, str], /):
@@ -84,7 +96,7 @@ class InputDropdown:
         return self
 
     def choose_by_text(self, item):
-        self.items.element_by(have.exact_text(item)).click()
+        self.items.element_by(have.text(item)).click()
         return self
 
     def select(self, item):

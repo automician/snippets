@@ -20,6 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import dataclasses
+from typing import Union
+from framework.model.controls.dropdown_input import InputDropdown
 
 
 @dataclasses.dataclass
@@ -33,4 +35,5 @@ class UserData:
 class AccessData:
     access_label: str = None
     owner_id: Union[str, InputDropdown.Value] = None
+    key_id: Union[str, InputDropdown.Value] = None
     receiver_id: Union[str, InputDropdown.Value] = None
